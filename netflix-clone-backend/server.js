@@ -1,6 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
+// environment variables
+const mongoUri = process.env.MONGO_URI;
+
 require('dotenv').config();
 
 const app = express();
@@ -10,7 +14,7 @@ app.use(cors({
     origin: 'http://localhost:3000',
   }));
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(mongoUri)
 .then(() => console.log('Connected to MongoDB'));
 
 app.get('/', (req, res) => {
